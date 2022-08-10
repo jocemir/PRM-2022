@@ -1,0 +1,8 @@
+{
+  "name": "PRM-2022",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/jocemir/PRM-2022.git",
+  "author": "Jocemir <69916938+jocemir@users.noreply.github.com>",
+  "license": "MIT"
+}
