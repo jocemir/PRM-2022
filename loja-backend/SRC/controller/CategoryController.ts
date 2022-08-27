@@ -100,11 +100,14 @@ class CategoryController{
 
             //atualiso com novos dados
 
-            const category = await Category.update(found.id, request.body)
+            await Category.update(found.id, request.body)
 
-            //retona a entidade encontrada
+            const novo = request.body;
 
-            return response.json(found);
+
+            //retona a entidade encontradas
+
+            return response.json(novo);
             
         } catch (e) {
             const error = e as TypeORMError;
