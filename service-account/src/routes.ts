@@ -1,16 +1,9 @@
-import { Router } from "express";
-
-
-//instancio o router do express
+import {Router} from 'express';
+import AuthController from './Controller/AuthController';
 
 const routes = Router();
 
+routes.post('/admin/signin', AuthController.signInAdmin);
 
-//rotas da brand
-
-routes.post('admin/sign')fgjh
-
-
-
+//Deixando pública a rota para a aplicação
 export default routes;
-
