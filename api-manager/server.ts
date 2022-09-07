@@ -5,7 +5,9 @@ import dotenv from 'dotenv';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 
 
-//carrego as variaveis de ambiente da aplaicação
+
+
+//carrego as variaveis de ambiente da aplicação....
 
 dotenv.config();
 
