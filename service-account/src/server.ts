@@ -2,7 +2,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-//import routes from './routes';
+import routes from './routes';
 
 //carrego as variaveis de ambiente da aplaicação
 
@@ -20,7 +20,7 @@ app.use(cors());
 app.use(express.json());
 
 //importa as rotas
-// app.use('/server',routes)
+app.use('/account', routes)
 
 
 
