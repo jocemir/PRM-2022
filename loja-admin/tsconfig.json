@@ -14,7 +14,12 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+
+    "paths": {
+      "@typesCustom":["C://xampp//htdocs//PRM-2022//PRM-2022//@types//index.ts"]
+    },                                      /* Specify a set of entries that re-map imports to additional lookup locations. */
+    "rootDirs": ["C://xampp//htdocs//PRM-2022//PRM-2022//@types"],  
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
