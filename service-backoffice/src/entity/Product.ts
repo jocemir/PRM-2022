@@ -24,7 +24,7 @@ export class Product extends BaseEntity{
     @ManyToOne(() => Category,{eager: true, nullable:false})
     category:Category;
 
-    @ManyToOne(() => Brand,{eager: true, nullable:false})
+    @ManyToOne(() => Brand,{eager: true, nullable:true})
     Brand: Brand;
     
 

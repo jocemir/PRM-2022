@@ -12,11 +12,15 @@ const api = axios.create({
 
 const _ACCOUNT = '/account/admin';
 
+//Brands
+
+const listBrands =() => (api.get(`${_BACKOFFICE}/signin`, credential);
+
 //account
 
 const signInAdmin = async (credential: ICredential) => {   
     try {
-        const result = await api.post('${_ACCOUNT}/signin', credential);
+        const result = await api.post(`${_ACCOUNT}/signin`, credential);
         console.log("deu Pau");
 
         return new Promise(resolve =>{

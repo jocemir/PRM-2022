@@ -4,54 +4,50 @@ import { FormEvent, useState } from "react";
 import { signInAdmin } from '../../services/server';
 import { useAuth } from '../../hook/useAuth';
 
-//Criando a página de Login
-export function LoginPage(){
+export function LoginPage() {
 
     const { user, signIn } = useAuth();
 
-    //Inicia os objetos email e password
-    const [credential, setCredential] = useState<ICredential>({
+    const[credential, setCredential] = useState<ICredential>({
         email: '',
         password: ''
-    }) 
+    });
 
-    //Evento de credenciamento
-    async function handleSignIn(event: FormDataEvent){
+    async function handleSignIn(event: FormEvent) {
         event.preventDefault();
-
-        try {
-            await signIn(credential);
-        } catch (e) {
-            console.log('Deu pau: ', e);    
-        }
-
         
-    }   
+        try {
+        await signIn(credential)
+        } catch(e) {
+            console.log('Deu errado: ', e)
+        }
+        console.log(credential);
+
+    }
 
     return (
         <div id="login-page">
             <Stack horizontal={false}>
                 <form onSubmit={handleSignIn}>
-                    {/* Caixa de E-mail */}
-                    <TextField label="E-mail" 
+                    <TextField label="E=mail"
                         required 
                         value={credential.email}
                         onChange={event => setCredential({...credential, email: (event.target as HTMLInputElement).value})}/>
 
-                    {/* Caixa de Senha */}
-                    <TextField label="Senha" 
-                        required type="password"   
+                    <TextField label="Senha"
+                        required
+                        type="password" 
                         value={credential.password}
                         onChange={event => setCredential({...credential, password: (event.target as HTMLInputElement).value})}/>
 
-                    {/* Botão Entrar */}
                     <PrimaryButton
-                        type="submit">
+                        type="Submit">
                         <span>Entrar</span>
                     </PrimaryButton>
                 </form>
 
-                <h2> # {JSON.stringify(user)} #</h2>
+                <h2> # {JSON.stringify(user)} # </h2>
+
             </Stack>
         </div>
     )

@@ -10,3 +10,8 @@ export interface IUser{
     email:string;
     password?:string;
 }
+
+export interface Ibrand{
+    id?:number;
+    name:string;
+}
