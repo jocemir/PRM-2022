@@ -1,22 +1,14 @@
-import { Router } from "express";
+import { Router } from 'express';
+import BrandController from './controller/BrandController';
+import CategoryController from './controller/CategoryController';
+import CustomerController from './controller/CustomerController';
+import OrderController from './controller/OrderController';
+import ProductController from './controller/ProductController';
 
-import BrandController from "./controller/BrandController";
-import CategoryController from "./controller/CategoryController";
-import CidadeController from "./controller/CidadeController";
-import CustomerController from "./controller/CustomerController";
-import EstadoController from "./controller/EstadoController";
-import OrderController from "./controller/OrderController";
-
-import ProductController from "./controller/ProductController";
-
-
-//instancio o router do express
-
+//Instancio o reouter do express
 const routes = Router();
 
-
-//rotas da brand
-
+//Rotas da Brand
 routes.route('/brands')
     .get(BrandController.index)
     .post(BrandController.create);
@@ -27,7 +19,7 @@ routes.route('/brands/:id')
     .delete(BrandController.remove);
 
 
-//rotas da category
+//Rotas da Category
 routes.route('/categories')
     .get(CategoryController.index)
     .post(CategoryController.create);
@@ -37,7 +29,8 @@ routes.route('/categories/:id')
     .put(CategoryController.update)
     .delete(CategoryController.remove);
 
-//rotas do product
+
+//Rotas da Product
 routes.route('/products')
     .get(ProductController.index)
     .post(ProductController.create);
@@ -47,30 +40,9 @@ routes.route('/products/:id')
     .put(ProductController.update)
     .delete(ProductController.remove);
 
-    //rotas da cidade
-routes.route('/cidade')
-.get(CidadeController.index)
-.post(CidadeController.create);
 
-routes.route('/cidade/:id')
-    .get(CidadeController.show)
-    .put(CidadeController.update)
-    .delete(CidadeController.remove);
-
-//rotas do estado
-
-routes.route('/estado')
-    .get(EstadoController.index)
-    .post(EstadoController.create);
-
-routes.route('/estado/:id')
-    .get(EstadoController.show)
-    .put(EstadoController.update)
-    .delete(EstadoController.remove);
-
-    //rota customers
-
-    routes.route('/customers')
+//Rotas da Customer
+routes.route('/customers')
     .get(CustomerController.index)
     .post(CustomerController.create);
 
@@ -79,13 +51,14 @@ routes.route('/customers/:id')
     .put(CustomerController.update)
     .delete(CustomerController.remove);
 
-routes.route('/orders')
+
+//Rotas da Order
+routes.route('/order')
     .get(OrderController.index)
     .post(OrderController.create);
 
-routes.route('/orders/:id')
+routes.route('/order/:id')
     .get(OrderController.show)
-    .put(OrderController.cancel)
+    .put(OrderController.canceled);
 
 export default routes;
-

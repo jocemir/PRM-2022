@@ -20,5 +20,5 @@ export const AppDataSource = new DataSource({
     database: "prmdb",
     synchronize: true,
     logging: false,
-    entities: [Brand, Category, Product, Customer, Order]
+    entities: [Brand, Category, Product, Customer, Order, OrderItem]
 })

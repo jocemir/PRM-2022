@@ -11,7 +11,7 @@ export interface IUser{
     password?:string;
 }
 
-export interface Ibrand{
+export interface IBrand{
     id?:number;
     name:string;
 }

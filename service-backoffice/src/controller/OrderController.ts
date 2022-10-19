@@ -7,8 +7,10 @@ class OrderController {
 
     public async index(request: Request, response: Response) {
         try {
+            //Buscar TODOS os registros do banco
             const orders = await Order.find();
 
+            //Retorno a lista
             return response.json(orders);
         } catch (e) {
             const error = e as TypeORMError;
@@ -18,8 +20,10 @@ class OrderController {
 
     public async create(request: Request, response: Response) {
         try {
+            //Salvo no banco a entidade que veio na requisição
             const order = await Order.save(request.body);
 
+            //Retorno a entidade inserida
             return response.status(201).json(order);
         } catch (e) {
             const error = e as TypeORMError;
@@ -27,24 +31,27 @@ class OrderController {
         }
     }
 
-
     public async show(request: Request, response: Response) {
         try {
+            //Pego o ID que foi enviado por request param
             const {id} = request.params;
 
+            //Verifico se veio o parametro ID
             if (!id) {
-                return response.status(400).json({message: 'IDentificador não informado'})
+                return response.status(400).json({message: 'Parâmetro ID não informado'})
             }
 
+            //Busco a entity no banco pelo ID
             const found = await Order.findOneBy({
                 id: Number(id)
             });
 
+            //Verifico se encontrou a order
             if (!found) {
-                return response.status(404).json({message: 'Não encontrado'})
+                return response.status(404).json({message: 'Recurso não encontrado'})
             }
 
-
+            //Retorno a entidade encontrada
             return response.json(found);
         } catch (e) {
             const error = e as TypeORMError;
@@ -52,31 +59,39 @@ class OrderController {
         }
     }
 
-    public async cancel(request: Request, response: Response) {
+    public async canceled(request: Request, response: Response) {
         try {
+            //Pego o ID que foi enviado por request param
             const {id} = request.params;
 
+            //Verifico se veio o parametro ID
             if (!id) {
-                return response.status(400).json({message: 'Identificador não informado'})
+                return response.status(400).json({message: 'Parâmetro ID não informado'})
             }
 
-            const found = await Order.findOneBy({id: Number(id)});
+            //Busco a entity no banco pelo ID
+            const found = await Order.findOneBy({
+                id: Number(id)
+            });
 
+            //Verifico se encontrou a order
             if (!found) {
-                return response.status(404).json({message: 'Não encontrado'})
+                return response.status(404).json({message: 'Recurso não encontrado'})
             }
 
-            const nova = request.body;
+            //Determina a data de cancelamento (este campo indica que o pedido está cancelado)
+            request.body.canceledDate = new Date();
 
-            //coloca a data atual no canceledDate
-            nova.canceledDate = new Date();
-
+            //Atualizo com os nos dados
             await Order.update(found.id, request.body);
 
-            nova.id = found.id;
+            const novo = request.body;
 
-            
-            return response.json(nova);
+            //Altero o ID para o que veio no request
+            novo.id = found.id;
+
+            //Retorno a entidade encontrada
+            return response.json(novo);
         } catch (e) {
             const error = e as TypeORMError;
             return response.status(500).json({message: error.message});

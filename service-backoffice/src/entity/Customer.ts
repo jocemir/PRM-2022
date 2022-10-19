@@ -17,6 +17,7 @@ export class Customer extends BaseEntity {
     @Column({nullable: true, length: 2})
     state: string;
 
+
     @Column({nullable: true, length: 50})
     city: string;
 
